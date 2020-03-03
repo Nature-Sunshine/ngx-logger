@@ -1,6 +1,46 @@
 # NatrHistorian
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.4.
+A logging library for Angular projects. This is done with decorators. 
+
+# Install
+
+```npm install @natr/historian --save```
+
+or
+
+```yarn add @natr/historian```
+
+# Usage
+
+By default, log level is set to DEBUG. You can change this in environment{.*}?.ts
+
+```
+CurrentLogLevel.LOG_LEVEL = LogLevel.DEBUG;
+
+export const environment = {
+...
+}
+```
+
+Then in a given class.
+```
+import {Logging} from '@natr/historian';
+
+@Logging
+@Component({
+...
+})
+export class SomeComponent implements OnInit {
+  logger: NgxLoggerService;
+  
+  constructor() {
+    this.logger.debug('wow, cool');
+  }
+} 
+
+```
+
+Not that there's some magic going on there. I'm not usually a fan of 'magic', but, here we are. Anyway, to get your typing to pass, you need to define a 'logger' property of HistorianService type, then it's automagically set for you, and away you go.
 
 ## Development server
 

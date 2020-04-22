@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
+import { OneComponent } from './components/one/one.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [OneComponent],
   imports: [
   ],
   exports: []

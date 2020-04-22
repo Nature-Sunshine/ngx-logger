@@ -1,11 +1,12 @@
 import {LogLevel} from './enums/log-level.enum';
 
 export class HistorianService {
+  private fnNameMatcher = /([^(]+)@|at ([^(]+) \(/;
 
   constructor(private readonly level: LogLevel, private readonly sourceName: string) {
   }
 
-  private readonly Preamble = '%c (%s) [%s]: %c';
+  private readonly Preamble = '%c (%s) [%s.%s]: %c';
 
   debug(...args) {
     if (this.level <= LogLevel.DEBUG) {
@@ -38,17 +39,31 @@ export class HistorianService {
   }
 
   log(color: string, ...args) {
+
     if (this.level === LogLevel.OFF) {
       return;
     }
+
+    const logLines = (new Error().stack).split('\n');
+    let callerName = this.fnName(logLines[2]);
+    if (!callerName) {
+      callerName = logLines[2];
+    }
+
     const fullFormatString = this.Preamble + args[0];
     console.log(
       fullFormatString,
       'color: ' + color,
       new Date().toLocaleString(),
       this.sourceName,
+      callerName,
       'color: black',
       ...args.slice(1)
     );
+  }
+
+  private fnName(str) {
+    const regexResult = this.fnNameMatcher.exec(str);
+    return regexResult[1] || regexResult[2];
   }
 }

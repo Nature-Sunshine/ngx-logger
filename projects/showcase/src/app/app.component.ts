@@ -19,4 +19,8 @@ export class AppComponent {
     this.logger.error('cool');
     this.logger.fatal('cool');
   }
+
+  funcInCom() {
+    this.logger.debug('um, things');
+  }
 }

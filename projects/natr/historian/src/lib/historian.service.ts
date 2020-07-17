@@ -50,6 +50,10 @@ export class HistorianService {
       callerName = logLines[2];
     }
 
+    console.log('type of arg0', typeof args[0]);
+    if (args[0] !== 'string') {
+      args.unshift('');
+    }
     const fullFormatString = this.Preamble + args[0];
     console.log(
       fullFormatString,

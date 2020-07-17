@@ -4,7 +4,8 @@ import {OneComponent} from '../../../natr/historian/src/lib/components/one/one.c
 
 
 const routes: Routes = [
-  {path: '', component: OneComponent}
+  {path: '', component: OneComponent},
+  {path: '**', component: OneComponent}
 ];
 
 @NgModule({

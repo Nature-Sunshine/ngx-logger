@@ -19,7 +19,8 @@ export class OneComponent implements OnInit {
     this.logger.debug('debug in init');
   }
 
-  funcInCom() {
+  funcInOneComponent() {
     this.logger.debug('um, things');
+    this.logger.debug({thing: 'thing'});
   }
 }
